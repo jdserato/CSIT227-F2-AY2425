@@ -1,11 +1,11 @@
 package Sept06;
 
-public class Bird extends Animal{
+public class Bird  extends Animal implements Makafly{
     String name;
     int age;
 
-    Bird(String name) {
-        super(name);
+    Bird(String name, int age) {
+        super(name, age);
         this.name = name;
     }
 
@@ -18,4 +18,5 @@ public class Bird extends Animal{
         System.out.println("Bird name : " + name);
         System.out.println("Animal name: " + super.name);
     }
+
 }

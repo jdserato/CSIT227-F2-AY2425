@@ -1,9 +1,8 @@
 package Sept06;
 
 public class Dog extends Mammal {
-    Dog(String name) {
-        super(name);
-        System.out.println("Hi");
+    Dog(String name, int age) {
+        super(name, age);
     }
 
     @Override
@@ -11,8 +10,4 @@ public class Dog extends Mammal {
         System.out.println(" aw aw");
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + " and I'm a dog";
-    }
 }

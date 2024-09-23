@@ -2,8 +2,8 @@ package Sept06;
 
 public abstract class Mammal extends Animal{
 
-    Mammal(String name) {
-        super(name);
+    Mammal(String name, int age) {
+        super(name, age);
     }
 
     void provideMilk() {
