@@ -37,8 +37,11 @@ public class Main {
         animals.add(animal);
         animals.add(tweetie);
         animals.add(new Bat("Batman", 50));
+        System.out.println("Printing mammals");
         for (Animal a : animals) {
-            System.out.println(a);
+            if (a instanceof Mammal) {
+                System.out.println(a);
+            }
         }
         Collections.sort(animals);
         System.out.println("AFTER SORTING BY NAME");
