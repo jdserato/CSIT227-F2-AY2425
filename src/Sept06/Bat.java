@@ -6,6 +6,11 @@ public class Bat extends Mammal implements Makafly, Swimmer{
     }
 
     @Override
+    public String toString() {
+        return super.toString() + "is a bat";
+    }
+
+    @Override
     void makeSound() {
         System.out.println("tktktktktk");
     }
@@ -18,5 +23,6 @@ public class Bat extends Mammal implements Makafly, Swimmer{
     @Override
     public void swim() {
         System.out.println(name + " is dead");
+//        return 0;
     }
 }

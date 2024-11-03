@@ -1,9 +1,6 @@
 package Sept06;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,22 +18,24 @@ public class Main {
             System.out.print(i + " ");
         }
         Dog browny = new Dog("Browny", 7);
-        System.out.println(browny);
         Cat siomeow = new Cat("Siomeow", 3);
-        System.out.println(siomeow);
-        browny.provideMilk();
-        siomeow.provideMilk(5);
         Animal animal = new Cat("Vince", 18);
-        System.out.println(animal);
         Bird tweetie = new Bird("Tweetie", 2);
-        tweetie.printName();
-        System.out.println(tweetie);
+//        tweetie.printName();
+//        System.out.println(tweetie);
         List<Animal> animals = new ArrayList<>();
-        animals.add(browny);
-        animals.add(siomeow);
-        animals.add(animal);
-        animals.add(tweetie);
+        {
+            animals.add(browny);
+            animals.add(siomeow);
+            animals.add(animal);
+            animals.add(tweetie);
+        }
         animals.add(new Bat("Batman", 50));
+        animals.add(new Cat("Meow", 5));
+        animals.add(new Dog("Blacky", 6));
+        animals.add(new Bat("Blacky", 9));
+        animals.add(new Cat("Blacky", 1));
+        animals.add(new Cat("Orinj", 6));
         System.out.println("Printing mammals");
         for (Animal a : animals) {
             if (a instanceof Mammal) {
@@ -52,6 +51,20 @@ public class Main {
         System.out.println("AFTER SORTING BY AGE");
         for (Animal a : animals) {
             System.out.println(a);
+        }
+        Bat abat = new Bat("Blacky", 6);
+        animals.add(abat);
+        Bat abat2 = new Bat("Blacky", 6);
+        animals.sort(new AnimalFriendComparator(abat2));
+        System.out.println("AFTER SORTING BY FRIEND");
+        for (Animal a : animals) {
+            System.out.println(a);
+        }
+        System.out.println("SHOW ALL BLACKY");
+        for (Animal a : animals) {
+            if (a.equals(6)) {
+                System.out.println(a);
+            }
         }
     }
 }

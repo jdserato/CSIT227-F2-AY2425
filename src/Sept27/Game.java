@@ -2,6 +2,7 @@ package Sept27;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Game {
     List<Plant> plants;
@@ -24,6 +25,7 @@ public class Game {
 
     void startGame() throws InterruptedException {
         int time = 0;
+        Scanner sc = new Scanner(System.in);
         List<CoffeeBean> beans = new ArrayList<>();
         for (Plant p : plants) {
             if (p instanceof CoffeeBean) {
@@ -44,8 +46,8 @@ public class Game {
             System.out.println("LIST OF PLANTS: ");
             for (Plant p : plants) {
                 if (time % p.getCooldown() == 0) {
-                    if (p instanceof Sunflower) {
-                        sun += ((Sunflower) p).provideSun();
+                    if (p instanceof SunProducer) {
+                        sun += ((SunProducer) p).provideSun();
                     }
                     if (p instanceof Attacker) {
                         Zombie z = findTarget(p);
@@ -61,8 +63,9 @@ public class Game {
                             }
                         }
                     }
-                    if (p instanceof SunShroom) {
-                        sun += ((SunShroom) p).provideSun();
+                    if (p instanceof Mushroom.MagnetShroom) {
+                        Zombie z = findNearMagneticTarget(p);
+                        System.out.println("MAGNETIZED " + z);
                     }
                 }
                 System.out.println(p);
@@ -86,7 +89,7 @@ public class Game {
                 System.out.println(z);
             }
             time++;
-            Thread.sleep(500);
+            sc.nextLine();
         }
     }
 
@@ -97,8 +100,19 @@ public class Game {
         }
         for (Zombie z : zombies) {
             if (p.getLocation().row == z.getLocation().row &&
-            z.getLocation().col <= p.getLocation().col + range &&
-            z.getLocation().col > p.getLocation().col) {
+                    z.getLocation().col <= p.getLocation().col + range &&
+                    z.getLocation().col > p.getLocation().col) {
+                return z;
+            }
+        }
+        return null;
+    }
+
+    private Zombie findNearMagneticTarget(Plant p) {
+        zombies.sort(new ZombiesNearPlantComparator(p));
+        for (Zombie z : zombies) {
+            if (z instanceof ZombieWithMetal && ((ZombieWithMetal) z).hasMagnetic()) {
+                ((ZombieWithMetal) z).getMagnetic().absorb();
                 return z;
             }
         }

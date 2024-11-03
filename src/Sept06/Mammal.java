@@ -1,7 +1,7 @@
 package Sept06;
 
 public abstract class Mammal extends Animal{
-
+    String name;
     Mammal(String name, int age) {
         super(name, age);
     }

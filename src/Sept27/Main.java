@@ -17,11 +17,14 @@ public class Main {
         game.addPlant(new PuffShroom(new Coord(1,7)));
         game.addPlant(new CoffeeBean(new Coord(1, 7)));
         game.addPlant(new Peashooter(new Coord(5,4)));
+        game.addPlant(new Mushroom.MagnetShroom(new Coord(5,5)));
+        game.addPlant(new CoffeeBean(new Coord(5, 5)));
 
         Random rand = new Random();
-        game.addZombie(new Zombie(new Coord(rand.nextInt(5)+1)));
-        game.addZombie(new Zombie(new Coord(rand.nextInt(5)+1)));
-        game.addZombie(new Zombie(new Coord(rand.nextInt(5)+1)));
+        game.addZombie(new NewspaperZombie(new Coord(rand.nextInt(5)+1)));
+        game.addZombie(new Zombie.BucketheadZombie(new Coord(rand.nextInt(5)+1)));
+        game.addZombie(new Zombie.ConeheadZombie(new Coord(rand.nextInt(5)+1)));
+        game.addZombie(new Zombie.ScreendoorZombie(new Coord(rand.nextInt(5)+1)));
 
         game.startGame();
     }

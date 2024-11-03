@@ -1,6 +1,6 @@
 package Sept27;
 
-public class SunShroom extends Mushroom{
+public class SunShroom extends Mushroom implements SunProducer{
     private State state;
 
     public SunShroom( Coord location) {
@@ -8,7 +8,7 @@ public class SunShroom extends Mushroom{
         state = State.SMALL;
     }
 
-    int provideSun() {
+    public int provideSun() {
         if (isAsleep) {
             return 0;
         }

@@ -3,9 +3,9 @@ package Sept27;
 public class Zombie {
     public static final int DEFAULT_HP = 12;
     private int hp;
-    private int damage;
+    protected int damage;
     private Coord location;
-    private double speed;
+    protected double speed;
 
     public Zombie(int hp, int damage, Coord location, double speed) {
         this.hp = hp;
@@ -61,5 +61,81 @@ public class Zombie {
 
     public boolean reachesHouse() {
         return location.col <= 0;
+    }
+
+    static class ConeheadZombie extends Zombie {
+        Shield.Cone cone;
+
+        public ConeheadZombie(Coord location) {
+            super(location);
+            cone = new Shield.Cone();
+        }
+
+        @Override
+        public void takeDamage(int damage) {
+            if (cone.hp > 0) {
+                cone.hp -= damage;
+            } else {
+                super.takeDamage(damage);
+            }
+        }
+
+        @Override
+        public String toString() {
+            return super.toString() + " - cone: " + cone.hp;
+        }
+    }
+
+    static class BucketheadZombie extends Zombie implements ZombieWithMetal{
+        Shield.Bucket bucket;
+
+        public BucketheadZombie(Coord location) {
+            super(location);
+            bucket = new Shield.Bucket();
+        }
+
+        @Override
+        public void takeDamage(int damage) {
+            if (bucket.hp > 0) {
+                bucket.hp -= damage;
+            } else {
+                super.takeDamage(damage);
+            }
+        }
+        @Override
+        public String toString() {
+            return super.toString() + " - bucket: " + bucket.hp;
+        }
+
+        @Override
+        public Magnetic getMagnetic() {
+            return bucket;
+        }
+    }
+
+    static class ScreendoorZombie extends Zombie implements ZombieWithMetal{
+        Shield.Screendoor door;
+
+        public ScreendoorZombie(Coord location) {
+            super(location);
+            door = new Shield.Screendoor();
+        }
+        @Override
+        public void takeDamage(int damage) {
+            if (door.hp > 0) {
+                door.hp -= damage;
+            } else {
+                super.takeDamage(damage);
+            }
+        }
+        @Override
+        public String toString() {
+            return super.toString() + " - door: " + door.hp;
+        }
+
+        @Override
+        public Magnetic getMagnetic() {
+            return door;
+        }
     }
 }

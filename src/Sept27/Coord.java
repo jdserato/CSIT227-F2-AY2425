@@ -16,9 +16,7 @@ public class Coord {
 
     @Override
     public String toString() {
-        return "{" + row +
-                "," + col +
-                '}';
+        return String.format("{%d, %.2f}",row,col);
     }
 
     @Override
@@ -28,5 +26,9 @@ public class Coord {
             return this.row == c.row && this.col == c.col;
         }
         return super.equals(obj);
+    }
+
+    public double distance(Coord o) {
+        return Math.sqrt(Math.pow(this.row - o.row,2)+Math.pow(this.col - o.col,2));
     }
 }

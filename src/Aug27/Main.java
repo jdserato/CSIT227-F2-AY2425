@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
+        Student s = new Student();
         // vince is the object; an instance of a Person
         Person vince = new Person();
         vince.name = "Jay Vince Serato";

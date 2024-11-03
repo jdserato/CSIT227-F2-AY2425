@@ -12,4 +12,15 @@ public class Mushroom extends Plant{
         isAsleep = false;
         cb.die();
     }
+
+    static class MagnetShroom extends Mushroom {
+
+        public MagnetShroom(Coord location) {
+            super(75, 6, location);
+        }
+
+        void absorbMetal(Magnetic m) {
+            m.absorb();
+        }
+    }
 }

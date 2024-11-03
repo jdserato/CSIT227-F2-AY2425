@@ -1,6 +1,6 @@
 package Sept06;
+ interface Swimmer {
+    int kms = 0;
+    void swim();
 
-public interface Swimmer {
-    final int kms = 0;
-    public abstract void swim();
 }
